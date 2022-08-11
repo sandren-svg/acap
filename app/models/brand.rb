@@ -1,3 +1,3 @@
 class Brand < ApplicationRecord
-    belongs_to :merchant_account
+    has_one :merchant_account
 end

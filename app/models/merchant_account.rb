@@ -1,5 +1,9 @@
 class MerchantAccount < ApplicationRecord
-    has_many: brands
-    belongs_to :user
-    
+    belongs_to :brand
+    belongs_to :user # do we need user?
+    has_many :products
+    has_many :vouchers
+    has_many :transactions
+    has_many :settlements
+           
 end
