@@ -1,3 +1,3 @@
 class Brand < ApplicationRecord
-    has_one :merchant_account
+    has_many :merchant_account
 end
