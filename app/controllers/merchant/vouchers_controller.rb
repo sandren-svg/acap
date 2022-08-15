@@ -1,4 +1,4 @@
-class Institution::VouchersController < ApplicationController
+class Merchant::VouchersController < ApplicationController
     def index
         vouchers = Voucher.all 
         render json: VoucherSerializer.new(vouchers).serializable_hash.to_json

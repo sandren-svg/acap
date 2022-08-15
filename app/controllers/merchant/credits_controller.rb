@@ -1,4 +1,4 @@
-class Institution::CreditsController < ApplicationController
+class Merchant::CreditsController < ApplicationController
     def index
         credits = Credit.all 
         render json: CreditSerializer.new(credits).serializable_hash.to_json

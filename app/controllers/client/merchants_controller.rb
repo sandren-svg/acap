@@ -1,4 +1,4 @@
-class Institution::MerchantsController < ApplicationController
+class Client::MerchantsController < ApplicationController
     def index
         merchant_accounts = Merchant.all 
         render json: MerchantSerializer.new(merchant_accounts).serializable_hash.to_json
