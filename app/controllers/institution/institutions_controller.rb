@@ -1,4 +1,4 @@
-class InstitutionsController < ApplicationController
+class Institution::InstitutionsController < ApplicationController
     def index
         institutions = Institution.all 
         render json: InstitutionSerializer.new(institutions).serializable_hash.to_json
@@ -13,11 +13,19 @@ class InstitutionsController < ApplicationController
         institution.update institution_params
         render json: InstitutionSerializer.new(institution).serializable_hash.to_json
     end
-    
+
     def destroy
         Institution.find(params[:id]).destroy
         render json: {message: 'OK' }.to_json, status: 200
      end
+
+     def create 
+     institution = Intitution.new cinstitution_params
+        if credit.save     
+            render json: InstitutionSerializer.new(institution).serializable_hash.to_json
+        else
+            render json: { error: institution.errors.full_messages.first }, status: 400
+        end
 
      private
 

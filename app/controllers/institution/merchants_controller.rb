@@ -1,4 +1,4 @@
-class MerchantsController < ApplicationController
+class Institution::MerchantsController < ApplicationController
     def index
         merchant_accounts = Merchant.all 
         render json: MerchantSerializer.new(merchant_accounts).serializable_hash.to_json
@@ -18,6 +18,14 @@ class MerchantsController < ApplicationController
         Merchant.find(params[:id]).destroy
         render json: {message: 'OK' }.to_json, status: 200
      end
+
+     def create 
+        merchant = Merchant.new merchant_params
+        if credit.save     
+            render json: MerchantSerializer.new(merchant).serializable_hash.to_json
+        else
+            render json: { error: merchant.errors.full_messages.first }, status: 400
+        end
 
      private
 
