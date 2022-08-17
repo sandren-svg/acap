@@ -1,3 +1,3 @@
 class Settlement < ApplicationRecord
-    belongs_to :merchant_account
+    belongs_to :merchant
 end
