@@ -4,4 +4,6 @@ Rails.application.routes.draw do
     resources :merchants
     resources :credits
   end
+
+  get '/health_check', to: 'health_check#show'
 end

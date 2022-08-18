@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* For windows, refer [this](https://stackoverflow.com/a/65628702) to change `CRLF` to `LF` to avoid docker error.

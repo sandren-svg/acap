@@ -8,8 +8,8 @@ default: &default
 
 development:
   <<: *default
-  database: plzpay_dev
+  database: postgres
 
 test:
   <<: *default
-  database: plzpay_test
+  database: postgres
