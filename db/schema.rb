@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 2022_08_17_025507) do
     t.bigint "voucher_id"
     t.boolean "redeemed"
     t.datetime "redeem_at"
+    t.integer "amount"
+    t.integer "amount_used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_vouchers_on_user_id"
@@ -128,8 +130,6 @@ ActiveRecord::Schema.define(version: 2022_08_17_025507) do
     t.string "image"
     t.datetime "start_date"
     t.datetime "expiry_date"
-    t.integer "amount"
-    t.integer "amount_used"
     t.integer "capped_amount"
     t.integer "min_purchase"
     t.bigint "credit_id"

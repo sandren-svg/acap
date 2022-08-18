@@ -28,7 +28,10 @@ class Client::VouchersController < ApplicationController
 
     def voucher_params
         params.permit(
-            :amount_use
+            :amount_use,
+            :name,
+            :description,
+            :amount
 
         )
     end

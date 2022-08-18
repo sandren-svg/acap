@@ -8,8 +8,6 @@ class CreateVouchers < ActiveRecord::Migration[5.2]
       t.string :image
       t.datetime :start_date
       t.datetime :expiry_date
-      t.integer :amount
-      t.integer :amount_used
       t.integer :capped_amount
       t.integer :min_purchase
       t.references :credit
