@@ -1,26 +1,27 @@
 class Institution::InstitutionsController < ApplicationController
+    before_action :ensure_record_exists, only: [:show, :update, :destroy]
+
     def index
         institutions = Institution.all 
         render json: InstitutionSerializer.new(institutions).serializable_hash.to_json
     end
+
     def show
-        institution = Institution.find(params[:id])
-        render json: InstitutionSerializer.new(institution).serializable_hash.to_json
+        render json: InstitutionSerializer.new(@record).serializable_hash.to_json
     end
-    
+
     def update
-        institution = Institution.find(params[:id])
-        institution.update institution_params
-        render json: InstitutionSerializer.new(institution).serializable_hash.to_json
+        @record.update institution_params
+        render json: InstitutionSerializer.new(@record).serializable_hash.to_json
     end
 
     def destroy
-        Institution.find(params[:id]).destroy
+        @record.destroy
         render json: {message: 'OK' }.to_json, status: 200
-     end
+    end
 
      def create 
-     institution = Intitution.new cinstitution_params
+     institution = Institution.new institution_params
         if credit.save     
             render json: InstitutionSerializer.new(institution).serializable_hash.to_json
         else
@@ -36,5 +37,9 @@ class Institution::InstitutionsController < ApplicationController
             :email
 
         )
+    end
+    def ensure_record_exists
+        @record = Institution.find_by(id: params[:id])
+        render json: { error: "Record not found" }, status: 404 unless @record
     end
 end

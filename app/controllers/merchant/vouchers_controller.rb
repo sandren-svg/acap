@@ -1,23 +1,24 @@
 class Merchant::VouchersController < ApplicationController
+    before_action :ensure_record_exists, only: [:show, :update, :destroy]
+    
     def index
         vouchers = Voucher.all 
         render json: VoucherSerializer.new(vouchers).serializable_hash.to_json
     end
+
     def show
-        voucher = Voucher.find(params[:id])
-        render json: VoucherSerializer.new(voucher).serializable_hash.to_json
+        render json: VoucherSerializer.new(@record).serializable_hash.to_json
     end
-    
+
     def update
-        voucher = Voucher.find(params[:id])
-        voucher.update voucher_params
-        render json: VoucherSerializer.new(voucher).serializable_hash.to_json
+        @record.update voucher_params
+        render json: VoucherSerializer.new(@record).serializable_hash.to_json
     end
 
     def destroy
-        Voucher.find(params[:id]).destroy
+        @record.destroy
         render json: {message: 'OK' }.to_json, status: 200
-     end
+    end
 
      def create 
         credit = Voucher.new voucher_params
@@ -40,5 +41,9 @@ class Merchant::VouchersController < ApplicationController
             :min_purchase 
 
         )
+    end
+    def ensure_record_exists
+        @record = Voucher.find_by(id: params[:id])
+        render json: { error: "Record not found" }, status: 404 unless @record
     end
 end
